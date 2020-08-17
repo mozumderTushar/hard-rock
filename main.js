@@ -8,6 +8,7 @@ document.getElementById('searchBtn').addEventListener('click',function(){
         .then(data => {
             displaySong(data);
         })
+        .catch((error)=> alert(error));
 })
 
 //display searched song
@@ -41,14 +42,13 @@ function getLyrics(songArtist,songTitle) {
             fetch(`https://api.lyrics.ovh/v1/${songArtist}/${songTitle}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data.lyrics);
                 singleLyrics.innerHTML += `<button class="btn go-back">&lsaquo;</button>
                 <h2 class="text-success mb-4">${songTitle} - ${songArtist}</h2>
                 <pre class="lyric text-white">${data.lyrics}</pre>`
                 simpleResult.innerHTML = '';
                 searchResult.innerHTML = '';
             })
-           
+            .catch((error)=> alert(error));
             singleLyrics.innerHTML = '';
 }
 
